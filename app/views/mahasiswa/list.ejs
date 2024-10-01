@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Daftar Mahasiswa</title>
+  </head>
+  <body>
+    <h1>Daftar Mahasiswa</h1>
+    <a href="/mahasiswa/add" class="btn-add">Tambah Mahasiswa</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Jenis Kelamin</th>
+          <th>IPK</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach((mahasiswa, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= mahasiswa.nim %></td>
+          <td><%= mahasiswa.nama %></td>
+          <td><%= mahasiswa.jenis_kelamin %></td>
+          <td><%= mahasiswa.ipk %></td>
+          <td>
+            <a href="/mahasiswa/<%= mahasiswa.id %>" class="action-btn edit">
+              <button>Edit</button>
+            </a>
+            <form
+              action="/mahasiswa/delete/<%= mahasiswa.id %>"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="action-btn delete">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
